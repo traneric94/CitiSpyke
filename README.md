@@ -30,6 +30,8 @@ This app will have one screen, with the main focus being the map and options tha
 
 The two options will be departure time and location.
 
+![wireframes](public/home.png)
+
 ### Architecture and Technologies
 
 This project will be implemented with the following technologies:
