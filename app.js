@@ -7,7 +7,7 @@ const axios = require('axios');
 const mysql = require('mysql');
 
 // App settings
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (request, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'))
@@ -29,12 +29,6 @@ const connection = mysql.createConnection({
   password: 'password',
   database: 'bikes'
 })
-
-app.get('/', (request, res) => {
-  console.log(path.join(__dirname, '/public/index.html'), "TEHSTESHJKEHSJK")
-
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-});
 
 app.listen(PORT, () => {
   console.log(__dirname);
