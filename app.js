@@ -80,7 +80,7 @@ getLocation = () => {
         location.capacity];
     });
 
-    con.query(sql, [values], function(err) {
+    connection.query(sql, [values], function(err) {
       if (err) throw err;
 
     });
