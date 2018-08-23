@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     container: 'map',
     style: 'mapbox://styles/traneric94/cjl4g37s2an382rmrxko7kl33',
     center: [-122.388470,37.756866],
-    zoom: 13,
+    zoom: 14,
   })
 
   let container = map.getCanvasContainer()
@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function splitCoordinates(coordinates) {
     return new mapboxgl.LngLat(+coordinates.longitude, +coordinates.latitude)
   }
+
 
   function subtractMinutes(date, minutes) {
     return new Date(date.getTime() - minutes*60000);
