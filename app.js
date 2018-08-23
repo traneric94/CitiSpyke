@@ -66,29 +66,29 @@ function compare(a,b) {
   return 0;
 }
 
-getLocation = () => {
-  axios.get("https://gbfs.fordgobike.com/gbfs/es/station_information.json")
-  .then( response => {
-    const responseArray = response.data.data.stations;
-    let sql = "INSERT INTO bike_station_locations (station_id, station_name, longitude, latitude, capacity) VALUES ?";
-    let values = responseArray.map((location) => {
-      return [
-        location.station_id,
-        location.name,
-        location.lon,
-        location.lat,
-        location.capacity];
-    });
-    connection.connect();
-    connection.query(sql, [values], function(err) {
-      if (err) throw err;
-
-    });
-  }).catch( error => {
-    console.log(error);
-  });
-}
-getLocation();
+// getLocation = () => {
+//   axios.get("https://gbfs.fordgobike.com/gbfs/es/station_information.json")
+//   .then( response => {
+//     const responseArray = response.data.data.stations;
+//     let sql = "INSERT INTO bike_station_locations (station_id, station_name, longitude, latitude, capacity) VALUES ?";
+//     let values = responseArray.map((location) => {
+//       return [
+//         location.station_id,
+//         location.name,
+//         location.lon,
+//         location.lat,
+//         location.capacity];
+//     });
+//     connection.connect();
+//     connection.query(sql, [values], function(err) {
+//       if (err) throw err;
+//
+//     });
+//   }).catch( error => {
+//     console.log(error);
+//   });
+// }
+// getLocation();
 
 (function getBikeInfo() {
   console.log('starting')
