@@ -34,6 +34,7 @@ app.get('/query', (req, res) => {
     let data = req.query
 
     connection.connect();
+    getBikeInfo();
 
     let stations;
 
@@ -88,7 +89,7 @@ function compare(a,b) {
 // }
 // getLocation();
 
-(function getBikeInfo() {
+function getBikeInfo() {
   console.log('starting')
   axios.get("https://gbfs.fordgobike.com/gbfs/en/station_status.json")
   .then ( response => {
@@ -112,5 +113,4 @@ function compare(a,b) {
   }).catch( error => {
     console.log(error);
   })
-  setTimeout(arguments.callee, 300000)
-})();
+};
