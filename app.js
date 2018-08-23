@@ -29,33 +29,33 @@ app.listen(PORT, () => {
   console.log(`listening on ${PORT}`)
 });
 
-app.get('/query', (req, res) => {
-
-    let data = req.query
-
-    connection.connect();
-
-    let stations;
-
-    console.log("Requesting data");
-    connection.query(`SELECT * FROM bikes.bike_station_locations;`,
-    function(err, rows, fields) {
-      if (err) console.log(err);
-      stations = rows.sort(compare);
-    });
-
-    connection.query(`SELECT station_id, num_bikes_available FROM bikes.bike_station_information ORDER BY date DESC LIMIT 310`, function(err, current_capacities, fields) {
-      if (err) console.log(err)
-      current_capacities = current_capacities.sort(compare)
-
-      for (var i = 0; i < stations.length; i++) {
-        stations[i].available = current_capacities[i].num_bikes_available
-      }
-      res.send(stations)
-    });
-
-    connection.end();
-})
+// app.get('/query', (req, res) => {
+//
+//     let data = req.query
+//
+//     connection.connect();
+//
+//     let stations;
+//
+//     console.log("Requesting data");
+//     connection.query(`SELECT * FROM bikes.bike_station_locations;`,
+//     function(err, rows, fields) {
+//       if (err) console.log(err);
+//       stations = rows.sort(compare);
+//     });
+//
+//     connection.query(`SELECT station_id, num_bikes_available FROM bikes.bike_station_information ORDER BY date DESC LIMIT 310`, function(err, current_capacities, fields) {
+//       if (err) console.log(err)
+//       current_capacities = current_capacities.sort(compare)
+//
+//       for (var i = 0; i < stations.length; i++) {
+//         stations[i].available = current_capacities[i].num_bikes_available
+//       }
+//       res.send(stations)
+//     });
+//
+//     connection.end();
+// })
 
 
 function compare(a,b) {
@@ -79,7 +79,7 @@ getLocation = () => {
         location.lat,
         location.capacity];
     });
-
+    connection.connect();
     connection.query(sql, [values], function(err) {
       if (err) throw err;
 
@@ -120,4 +120,4 @@ getLocation();
     console.log(error);
   });
   setTimeout(arguments.callee, 300000)
-});
+})();
