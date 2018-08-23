@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let points;
 
   mapboxgl.accessToken = 'pk.eyJ1IjoidHJhbmVyaWM5NCIsImEiOiJjamwzdXZmZ2oyNTdsM3Bxa2puNHd6bndmIn0.WHqQdH1pCITDfoOot3AB-Q';
-  console.log("request1")
   let map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/traneric94/cjl4g37s2an382rmrxko7kl33',
@@ -23,22 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
     return new mapboxgl.LngLat(+coordinates.longitude, +coordinates.latitude)
   }
 
-
-  function subtractMinutes(date, minutes) {
-    return new Date(date.getTime() - minutes*60000);
-  }
-
-  let data = new Date();
-  let adjustedTime = subtractMinutes(data, 5)
+  // function subtractMinutes(date, minutes) {
+  //   return new Date(date.getTime() - minutes*60000);
+  // }
+  //
+  // let data = new Date();
+  // let adjustedTime = subtractMinutes(data, 5)
 
   let time = data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds()
-  console.log("request2");
   $.ajax({
     method: 'GET',
-    url: '/query',
-    data: time
+    url: '/query'
   }).then((data) => {
-    console.log("request3");
     points = svg.selectAll("circle.dot").data(data)
 
     points.enter().append("circle").classed("dot", true)

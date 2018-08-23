@@ -7,7 +7,9 @@ const axios = require('axios');
 const mysql = require('mysql');
 
 // App settings
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static('public'))
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
 app.get('/', (request, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'))
