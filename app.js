@@ -95,7 +95,7 @@ function compare(a,b) {
   .then ( response => {
     // console.log(response.data.data.stations)
     const responseArray = response.data.data.stations;
-    let sql = "INSERT INTO bike_station_information (station_id, num_bikes_available) VALUES ?";
+    let sql = "INSERT INTO bike_station_information (station_id, num_bikes_available, num_docks_available) VALUES ?";
     const test = Object.values(responseArray)
     // console.log(Object.values(test)[0].num_bikes_available)
     // console.log(Object.values(test)[0].num_docks_available)
