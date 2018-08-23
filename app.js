@@ -61,7 +61,6 @@ app.get('/query', (req, res) => {
       }
       res.send(stations)
     });
-    connection.end();
 })
 
 
