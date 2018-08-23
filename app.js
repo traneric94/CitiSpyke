@@ -46,7 +46,7 @@ app.get('/query', (req, res) => {
 
     let stations;
 
-    console.log("requesting data");
+    console.log("Requesting data");
     connection.query(`SELECT * FROM bikes.bike_station_locations;`,
     function(err, rows, fields) {
       if (err) console.log(err);
