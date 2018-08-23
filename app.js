@@ -53,8 +53,6 @@ app.get('/query', (req, res) => {
       }
       res.send(stations)
     });
-
-    connection.end();
 })
 
 
@@ -98,21 +96,15 @@ function compare(a,b) {
     const responseArray = response.data.data.stations;
     let sql = "INSERT INTO bike_station_information (station_id, num_bikes_available, num_docks_available) VALUES ?";
     const test = Object.values(responseArray)
-    // console.log(Object.values(test)[0].num_bikes_available)
-    // console.log(Object.values(test)[0].num_docks_available)
-    // console.log(Object.values(test)[0].station_id)
 
     let values = Object.values(test).map((location) => {
-      // console.log(location.num_bikes_available)
-      // console.log(location);
-      // console.log([location.station_id, location.num_bikes_available, location.num_docks_available])
+
       return [
         location.station_id,
          location.num_bikes_available,
           location.num_docks_available
         ];
     });
-    connection.connect();
     connection.query(sql, [values], function(err) {
       if (err) throw err;
 
@@ -120,6 +112,5 @@ function compare(a,b) {
   }).catch( error => {
     console.log(error);
   })
-  connection.end();
   setTimeout(arguments.callee, 300000)
 })();
