@@ -39,7 +39,6 @@ app.get('/query', (req, res) => {
 
     let data = req.query
 
-    connection.connect();
     getBikeInfo();
 
     let stations;
@@ -114,7 +113,6 @@ function getBikeInfo() {
     });
     connection.query(sql, [values], function(err) {
       if (err) throw err;
-      connection.end();
 
     });
   }).catch( error => {
