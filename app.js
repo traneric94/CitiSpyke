@@ -9,26 +9,31 @@ const mysql = require('mysql');
 // App settings
 app.use(express.static('public'))
 
+app.get('/', (request, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'))
+})
+
 //mysql://bd2dea88683170:25adc518@us-cdbr-iron-east-01.cleardb.net/heroku_a658bec0c880ba1?reconnect=true
 
 //Configuration
-const connection = mysql.createConnection({
-  host    : 'us-cdbr-iron-east-01.cleardb.net',
-  user    : 'bd2dea88683170',
-  password: '25adc518',
-  database: 'heroku_a658bec0c880ba1'
-});
-
 // const connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'password',
-//   database: 'bikes'
-// })
+//   host    : 'us-cdbr-iron-east-01.cleardb.net',
+//   user    : 'bd2dea88683170',
+//   password: '25adc518',
+//   database: 'heroku_a658bec0c880ba1'
+// });
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'password',
+  database: 'bikes'
+})
 
 app.get('/', (request, res) => {
+  console.log(path.join(__dirname, '/public/index.html'), "TEHSTESHJKEHSJK")
 
-  res.sendFile(path.join(__dirname, './public/index.html'))
+  res.sendFile(path.join(__dirname, '/public/index.html'))
 });
 
 app.listen(PORT, () => {
@@ -115,6 +120,7 @@ function getBikeInfo() {
     });
     connection.query(sql, [values], function(err) {
       if (err) throw err;
+      connection.end();
 
     });
   }).catch( error => {

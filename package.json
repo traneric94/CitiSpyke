@@ -31,5 +31,7 @@
     "sass-loader": "^6.0.7",
     "webpack": "^3.4.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
 }
