@@ -12,12 +12,19 @@ app.use(express.static('public'))
 //mysql://bd2dea88683170:25adc518@us-cdbr-iron-east-01.cleardb.net/heroku_a658bec0c880ba1?reconnect=true
 
 //Configuration
+// const connection = mysql.createConnection({
+//   host    : 'us-cdbr-iron-east-01.cleardb.net',
+//   user    : 'bd2dea88683170',
+//   password: '25adc518',
+//   database: 'heroku_a658bec0c880ba1'
+// });
+
 const connection = mysql.createConnection({
-  host    : 'us-cdbr-iron-east-01.cleardb.net',
-  user    : 'bd2dea88683170',
-  password: '25adc518',
-  database: 'heroku_a658bec0c880ba1'
-});
+  host: 'localhost',
+  user: 'root',
+  password: 'password',
+  database: 'bikes'
+})
 
 app.get('/', (request, res) => {
 
@@ -54,6 +61,7 @@ app.get('/query', (req, res) => {
       }
       res.send(stations)
     });
+    connection.end();
 })
 
 
