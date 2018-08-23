@@ -19,8 +19,6 @@ const connection = mysql.createConnection({
   database: 'heroku_a658bec0c880ba1'
 });
 
-app.use(express.static('public'))
-
 app.get('/', (request, res) => {
 
   res.sendFile(path.join(__dirname, './public/index.html'))
@@ -29,7 +27,7 @@ app.get('/', (request, res) => {
 app.listen(PORT, () => {
   console.log(__dirname);
   console.log(`listening on ${PORT}`)
-})
+});
 
 // app.get('/query', (req, res) => {
 //
@@ -57,16 +55,16 @@ app.listen(PORT, () => {
 //     });
 //
 //     connection.end();
-})
+// })
 
-
-function compare(a,b) {
-  if (a.station_id < b.station_id)
-    return -1;
-  if (a.station_id > b.station_id)
-    return 1;
-  return 0;
-}
+//
+// function compare(a,b) {
+//   if (a.station_id < b.station_id)
+//     return -1;
+//   if (a.station_id > b.station_id)
+//     return 1;
+//   return 0;
+// }
 
 // getLocation = () => {
 //   axios.get("https://gbfs.fordgobike.com/gbfs/es/station_information.json")
