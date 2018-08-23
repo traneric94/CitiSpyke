@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // let data = new Date();
   // let adjustedTime = subtractMinutes(data, 5)
 
-  let time = data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds()
+  // let time = data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds()
+  
   $.ajax({
     method: 'GET',
     url: '/query'
