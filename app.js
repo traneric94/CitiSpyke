@@ -54,6 +54,7 @@ app.get('/query', (req, res) => {
       res.send(stations)
     });
 
+    connection.end();
 })
 
 
@@ -111,6 +112,7 @@ function compare(a,b) {
           location.num_docks_available
         ];
     });
+    connection.connect();
     connection.query(sql, [values], function(err) {
       if (err) throw err;
 
@@ -118,5 +120,6 @@ function compare(a,b) {
   }).catch( error => {
     console.log(error);
   })
+  connection.end();
   setTimeout(arguments.callee, 300000)
 })();
