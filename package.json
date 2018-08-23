@@ -27,11 +27,8 @@
     "mysql": "^2.16.0",
     "node-fetch": "^1.7.3",
     "node-sass": "^4.9.3",
-    "pug": "^2.0.3",
     "sass-loader": "^6.0.7",
-    "sqlite3": "^4.0.2",
     "webpack": "^3.4.1"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
