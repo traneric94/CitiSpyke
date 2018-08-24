@@ -5,7 +5,7 @@ const fetch = require('node-fetch')
 const PORT = process.env.PORT || 8000; // process.env accesses heroku's environment variables
 const axios = require('axios');
 const mysql = require('mysql');
-
+const
 // App settings
 app.use(express.static('public'))
 
@@ -50,11 +50,11 @@ app.get('/query', (req, res) => {
       stations = rows.sort(compare);
     });
 
-    connection.query(`SELECT station_id, num_bikes_available FROM bike_station_information ORDER BY date DESC LIMIT 310`, function(err, current_capacities, fields) {
+    connection.query(`SELECT station_id, num_bikes_available FROM bike_station_information ORDER BY date DESC LIMIT 313`, function(err, current_capacities, fields) {
       if (err) console.log(err)
       current_capacities = current_capacities.sort(compare)
 
-      for (var i = 0; i < stations.length; i++) {
+      for (let i = 0; i < stations.length && current_capacities.length; i++) {
         stations[i].available = current_capacities[i].num_bikes_available
       }
       res.send(stations)
