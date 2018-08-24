@@ -2,7 +2,7 @@
 
 Predyct is a commuter information site that provides realtime numbers of FordGoBike bikeshare stations and traffic.
 
-###[Live Demo](https://predyct.herokuapp.com/)
+### [Live Demo](https://predyct.herokuapp.com/)
 
 ### Features
 
