@@ -15,7 +15,7 @@
     "build": "webpack --watch",
     "start": "node app.js",
     "start:debug": "DEBUG=* node app.js",
-    "postinstall":"webpack --optimize-minizmize"
+    "postinstall":"webpack --optimize-minimize"
   },
   "dependencies": {
     "axios": "^0.18.0",
