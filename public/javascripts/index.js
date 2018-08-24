@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function coords(location) {
       currentLat = location.coords.latitude;
       currentLon = location.coords.longitude;
-
     }
 
   mapboxgl.accessToken = 'pk.eyJ1IjoidHJhbmVyaWM5NCIsImEiOiJjamwzdXZmZ2oyNTdsM3Bxa2puNHd6bndmIn0.WHqQdH1pCITDfoOot3AB-Q';
@@ -25,12 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     container: 'map',
     style: 'mapbox://styles/traneric94/cjl4g37s2an382rmrxko7kl33',
     center: [currentLat, currentLon],
-    zoom: 14,
+    zoom: 14
   })
 
   let container = map.getCanvasContainer()
   let svg = d3.select(container).append("svg").attr("class", "svgclass")
-  map.scrollZoom.disable();
 
   function project(p) {
     return map.project(splitCoordinates(p));
