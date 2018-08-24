@@ -5,8 +5,7 @@ const config = {
   entry: path.join(__dirname, './public/javascripts/index.js'),
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, './public')
-// path.resolve
+    path: path.resolve(__dirname, './public')
   },
   plugins: [
     new webpack.ProgressPlugin()
