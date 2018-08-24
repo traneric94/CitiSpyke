@@ -14,7 +14,8 @@
   "scripts": {
     "build": "webpack --watch",
     "start": "node app.js",
-    "start:debug": "DEBUG=* node app.js"
+    "start:debug": "DEBUG=* node app.js",
+    "postinstall":"webpack --optimize-minizmize"
   },
   "dependencies": {
     "axios": "^0.18.0",
