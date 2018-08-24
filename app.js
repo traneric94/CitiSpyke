@@ -44,13 +44,13 @@ app.get('/query', (req, res) => {
     let stations;
 
     console.log("Requesting data");
-    connection.query(`SELECT * FROM bikes.bike_station_locations;`,
+    connection.query(`SELECT * FROM bike_station_locations;`,
     function(err, rows, fields) {
       if (err) console.log(err);
       stations = rows.sort(compare);
     });
 
-    connection.query(`SELECT station_id, num_bikes_available FROM bikes.bike_station_information ORDER BY date DESC LIMIT 310`, function(err, current_capacities, fields) {
+    connection.query(`SELECT station_id, num_bikes_available FROM bike_station_information ORDER BY date DESC LIMIT 310`, function(err, current_capacities, fields) {
       if (err) console.log(err)
       current_capacities = current_capacities.sort(compare)
 
