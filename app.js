@@ -15,19 +15,19 @@ app.get('/', (request, res) => {
 //mysql://bd2dea88683170:25adc518@us-cdbr-iron-east-01.cleardb.net/heroku_a658bec0c880ba1?reconnect=true
 
 //Configuration
-const connection = mysql.createConnection({
-  host    : 'us-cdbr-iron-east-01.cleardb.net',
-  user    : 'bd2dea88683170',
-  password: '25adc518',
-  database: 'heroku_a658bec0c880ba1'
-});
-
 // const connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'password',
-//   database: 'bikes'
-// })
+//   host    : 'us-cdbr-iron-east-01.cleardb.net',
+//   user    : 'bd2dea88683170',
+//   password: '25adc518',
+//   database: 'heroku_a658bec0c880ba1'
+// });
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'password',
+  database: 'bikes'
+})
 
 app.listen(PORT, () => {
   console.log(__dirname);
@@ -97,7 +97,6 @@ function getBikeInfo() {
   console.log('starting')
   axios.get("https://gbfs.fordgobike.com/gbfs/en/station_status.json")
   .then ( response => {
-    // console.log(response.data.data.stations)
     const responseArray = response.data.data.stations;
     let sql = "INSERT INTO bike_station_information (station_id, num_bikes_available, num_docks_available) VALUES ?";
     const test = Object.values(responseArray)
@@ -117,6 +116,7 @@ function getBikeInfo() {
   }).catch( error => {
     console.log(error);
   })
+  setTimeout(arguments.callee, 300000)
 };
 
 setInterval(function () {

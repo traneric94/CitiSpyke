@@ -8,9 +8,9 @@ body {
 }
 #map {
   position:absolute;
-  margin-top: 5%;
+  margin-top: 2.5%;
   width: 90%;
-  height: 90%;
+  height: 80%;
 }
 svg {
   position: absolute;

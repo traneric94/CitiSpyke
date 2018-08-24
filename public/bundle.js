@@ -36,32 +36,12 @@
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
 /******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -79,18 +59,12 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
-/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./public/javascripts/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ "./public/javascripts/index.js":
-/*!*************************************!*\
-  !*** ./public/javascripts/index.js ***!
-  \*************************************/
-/*! no static exports found */
+/******/ ([
+/* 0 */
 /***/ (function(module, exports) {
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -106,8 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   let container = map.getCanvasContainer()
-  let svg = d3.select(container).append("svg")
-
+  let svg = d3.select(container).append("svg").attr("class", "svgclass")
+  map.scrollZoom.disable();
 
   function project(p) {
     return map.project(splitCoordinates(p));
@@ -117,15 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
     return new mapboxgl.LngLat(+coordinates.longitude, +coordinates.latitude)
   }
 
-  // function subtractMinutes(date, minutes) {
-  //   return new Date(date.getTime() - minutes*60000);
-  // }
-  //
-  // let data = new Date();
-  // let adjustedTime = subtractMinutes(data, 5)
+  function subtractMinutes(date, minutes) {
+    return new Date(date.getTime() - minutes*60000);
+  }
 
-  // let time = data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds()
-  
+  function getTime() {
+    let data = new Date();
+    let adjustedTime = subtractMinutes(data, 5)
+    let time = data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds()
+  }
   $.ajax({
     method: 'GET',
     url: '/query'
@@ -138,13 +112,32 @@ document.addEventListener('DOMContentLoaded', () => {
       "fill-opacity": 0.6,
       stroke: "#004d60",
       "stroke-width": 1
+    }).on("mouseover", function(d){
+    d3.select(".svgclass").data([d])
+      .append("text")
+      .style("z-index", -10)
+      .attr("font-size", "15px")
+      .attr("fill", "red")
+      .attr("position", "absolute")
+      .text(function (d) {return "Available bikes: " + d.available})
+      .attr("x", function(d) {return project(d).x;})
+      .attr("y", function(d) {return project(d).y;})
+      .attr("text-anchor", "middle")
+      d3.select(this)
+      .attr("r", function(d) {return 65})
+
+    }).on("mouseout", function(d) {
+      svg.selectAll("text").remove()
+      d3.select(this)
+      .attr("r", function(d) {return d.available})
     })
 
     function render() {
+
       points.attr({
         cx: function(p) {return project(p).x},
         cy: function(p) {return project(p).y},
-        r: function(p) {return p.available}
+        r: function(p) {return p.available*2}
       })
     }
 
@@ -158,17 +151,14 @@ document.addEventListener('DOMContentLoaded', () => {
     render()
   }).catch(err => console.log(err))
 
-
-  $( "#time" ).change(function() {
-    // alert( "Handler for .change() called." );
-    // will render map with new data
-  });
-
+  // $( "#time" ).change(function() {
+  //   // alert( "Handler for .change() called." );
+  //   // will render map with new data
+  // });
 
 });
 
 
 /***/ })
-
-/******/ });
+/******/ ]);
 //# sourceMappingURL=bundle.js.map
