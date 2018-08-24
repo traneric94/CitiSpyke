@@ -118,3 +118,7 @@ function getBikeInfo() {
     console.log(error);
   })
 };
+
+setInterval(function () {
+    connection.query('SELECT 1');
+}, 5000);
