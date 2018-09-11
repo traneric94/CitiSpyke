@@ -36,7 +36,7 @@ app.get('/query', (req, res) => {
 
     let data = req.query
 
-    getBikeInfo();
+    // getBikeInfo();
 
     let stations;
 
@@ -111,9 +111,14 @@ function getBikeInfo() {
       if (err) throw err;
 
     });
+    sqldelete = "DELETE FROM bike_station_information LIMIT 313"
+    connect.query(sqldelete, function(err) {
+      if (err) throw err;
+    })
   }).catch( error => {
     console.log(error);
   })
+
   setTimeout(arguments.callee, 300000)
 };
 

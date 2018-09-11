@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  let currentLat = -122.4014;
-  let currentLon = 37.7990;
+  let currentLat = -122.392054;
+  let currentLon = 37.782062;
   let points;
 
-    // document.getElementById("getLocation").addEventListener("click", function(e) {
+    // document.getElementById('getLocation').addEventListener('click', function(e) {
     //   getCurrentLocation();
     // })
 
@@ -27,8 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
     zoom: 14
   })
 
+  map.addControl(new mapboxgl.NavigationControl());
+
   let container = map.getCanvasContainer()
-  let svg = d3.select(container).append("svg").attr("class", "svgclass")
+  let svg = d3.select(container).append('svg').attr('class', 'svgclass')
 
   function project(p) {
     return map.project(splitCoordinates(p));
@@ -45,45 +47,46 @@ document.addEventListener('DOMContentLoaded', () => {
   function getTime() {
     let data = new Date();
     let adjustedTime = subtractMinutes(data, 5)
-    let time = data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds()
+    let time = data.getHours() + ':' + data.getMinutes() + ':' + data.getSeconds()
   }
 
   $.ajax({
     method: 'GET',
     url: '/query'
   }).then((data) => {
-    points = svg.selectAll("circle.dot").data(data)
+    points = svg.selectAll('circle.dot').data(data)
 
-    points.enter().append("circle").classed("dot", true)
+    points.enter().append('circle').classed('dot', true)
     .style({
-      fill: "#4286f4",
-      "fill-opacity": 0.6,
-      stroke: "#004d60",
-      "stroke-width": 1
-    }).on("mouseover", function(d){
+      fill: '#4286f4',
+      'fill-opacity': 0.6,
+      stroke: '#004d60',
+      'stroke-width': 1
+    }).on('mouseover', function(d){
 
-    d3.select(".svgclass").data([d])
-      .append("text")
-      .style("font-family", "sans-serif")
-      .style("-webkit-text-fill-color", "white")
-      .style("-webkit-text-stroke-width", "1px")
-      .style("-webkit-text-stroke-color", "black")
-      .attr("font-size", "15px")
-      .attr("position", "absolute")
-      .text(function (d) {return "Available bikes: " + d.available})
-      .attr("x", function(d) {return project(d).x;})
-      .attr("y", function(d) {return project(d).y;})
-      .attr("text-anchor", "middle")
-
-      d3.select(this)
-      .attr("r", function(d) {return 65})
-
-    }).on("mouseout", function(d) {
-
-      svg.selectAll("text").remove()
+    d3.select('.svgclass').data([d])
+      .append('text')
+      .style('font-family', 'sans-serif')
+      .style('-webkit-text-fill-color', 'white')
+      .style('-webkit-text-stroke-width', '1px')
+      .style('-webkit-text-stroke-color', 'red')
+      .attr('font-size', '18px')
+      .attr('position', 'absolute')
+      .text(function (d) {return 'Available bikes: ' + d.available})
+      .attr('x', function(d) {return project(d).x;})
+      .attr('y', function(d) {return project(d).y;})
+      .attr('text-anchor', 'middle')
+      .attr('fill', '')
 
       d3.select(this)
-      .attr("r", function(d) {return d.available})
+      .attr('r', function(d) {return 77})
+
+    }).on('mouseout', function(d) {
+
+      svg.selectAll('text').remove()
+
+      d3.select(this)
+      .attr('r', function(d) {return d.available*1.5 + 10})
     })
 
     function render() {
@@ -91,23 +94,18 @@ document.addEventListener('DOMContentLoaded', () => {
       points.attr({
         cx: function(p) {return project(p).x},
         cy: function(p) {return project(p).y},
-        r: function(p) {return p.available*2}
+        r: function(p) {return p.available*1.5 + 10}
       })
     }
 
-    map.on("viewreset", function() {
+    map.on('viewreset', function() {
       render()
     })
-    map.on("move", function() {
+    map.on('move', function() {
       render()
     })
 
     render()
   }).catch(err => console.log(err))
-
-  // $( "#time" ).change(function() {
-  //   // alert( "Handler for .change() called." );
-  //   // will render map with new data
-  // });
 
 });
