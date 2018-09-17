@@ -69,6 +69,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems);
   let currentLat = -122.392054;
   let currentLon = 37.782062;
   let points;

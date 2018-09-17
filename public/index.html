@@ -2,21 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>bikeShare Predictions</title>
-    <!-- <script src="https://rawgit.com/traneric94/Predyct/master/public/bundle.js"></script> -->
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <link rel="stylesheet" href="index.css">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
     <script type="text/javascript" src="./bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-    <link rel="stylesheet" href="index.css">
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>bikeShare Predictions</title>
   </head>
   <body>
     <main id='main'></main>
-    <h1 class="title"> Predyct - Realtime Traffic and Bikeshare Availability </h1>
+    <h1 class="title"> CitiSpyke - Realtime Traffic and Bikeshare Availability </h1>
     <!-- <button id="getLocation"> Get Current Position! </button> -->
     <!-- <label>Departure Time:
       <select id="time" name="time" form="time">
@@ -38,5 +41,19 @@
     <ul id="stations">
 
     </ul>
+
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+    
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div>
+    </div>
   </body>
 </html>
