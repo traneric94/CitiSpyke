@@ -2,8 +2,6 @@
 
 CitiSpyke is a commuter information site that provides realtime numbers of FordGoBike bikeshare stations and traffic.
 
-### [Live Demo](https://citispyke.herokuapp.com/)
-
 ### Features
 
 + Realtime map with periodically updated traffic.
