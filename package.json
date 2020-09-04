@@ -27,7 +27,7 @@
     "express-ejs-layouts": "^1.1.0",
     "mysql": "^2.16.0",
     "node-fetch": "^1.7.3",
-    "node-sass": "^4.9.3",
+    "node-sass": "^4.13.1",
     "pg": "^7.4.3",
     "sass-loader": "^6.0.7",
     "webpack": "^3.4.1"
